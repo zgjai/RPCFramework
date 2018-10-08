@@ -9,6 +9,7 @@
     <modules>
         <module>rpc.client</module>
         <module>dubbo.demo</module>
+        <module>simple</module>
     </modules>
 
     <name>guijiang.zhang</name>
