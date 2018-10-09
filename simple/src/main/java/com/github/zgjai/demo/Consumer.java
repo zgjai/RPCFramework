@@ -13,5 +13,7 @@ public class Consumer {
         HelloService helloService = RpcClient.refer(HelloService.class, "127.0.0.1", 8888);
         String result = helloService.hello("hehe");
         System.out.println(result);
+        Student student = helloService.hello(1);
+        System.out.println(student);
     }
 }

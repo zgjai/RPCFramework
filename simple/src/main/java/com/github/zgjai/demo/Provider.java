@@ -12,6 +12,7 @@ public class Provider {
     public static void main(String[] args) throws Exception {
         HelloService helloService = new HelloServiceImpl();
         RpcServer.export(helloService, 8888);
+        System.out.println("end");
     }
 
 }
