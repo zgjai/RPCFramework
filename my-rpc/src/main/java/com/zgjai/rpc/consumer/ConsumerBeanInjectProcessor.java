@@ -1,12 +1,13 @@
 package com.zgjai.rpc.consumer;
 
-import com.zgjai.rpc.annotation.RPCConsumer;
+import java.lang.reflect.Field;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
+import com.zgjai.rpc.annotation.RPCConsumer;
 
 /**
  * Created by zhangguijiang on 2019/2/7.
@@ -23,7 +24,8 @@ public class ConsumerBeanInjectProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field : fields) {
-                field.setAccessible(true);
+            field.setAccessible(true);
+            // 如果该域被RPCConsumer注解，则注入proxy类
             if (field.isAnnotationPresent(RPCConsumer.class)) {
                 if (!field.getType().isInterface()) {
                     throw new BeanCreationException("RPC consumer must be used at interface");

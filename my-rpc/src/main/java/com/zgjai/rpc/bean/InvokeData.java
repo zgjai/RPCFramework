@@ -1,5 +1,9 @@
 package com.zgjai.rpc.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +14,9 @@ import java.io.Serializable;
  * 3. 调用参数
  * 4. 服务版本
  */
+@AllArgsConstructor
+@Getter
+@Setter
 public class InvokeData implements Serializable {
 
     private static final long serialVersionUID = 5548813108845836743L;
@@ -21,43 +28,4 @@ public class InvokeData implements Serializable {
     private Object[] args;
 
     private String serviceVersion;
-
-    public InvokeData(String interfaceName, String methodName, Object[] args, String serviceVersion) {
-        this.interfaceName = interfaceName;
-        this.methodName = methodName;
-        this.args = args;
-        this.serviceVersion = serviceVersion;
-    }
-
-    public String getInterfaceName() {
-        return interfaceName;
-    }
-
-    public void setInterfaceName(String interfaceName) {
-        this.interfaceName = interfaceName;
-    }
-
-    public String getMethodName() {
-        return methodName;
-    }
-
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
-
-    public Object[] getArgs() {
-        return args;
-    }
-
-    public void setArgs(Object[] args) {
-        this.args = args;
-    }
-
-    public String getServiceVersion() {
-        return serviceVersion;
-    }
-
-    public void setServiceVersion(String serviceVersion) {
-        this.serviceVersion = serviceVersion;
-    }
 }
