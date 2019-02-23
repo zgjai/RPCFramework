@@ -15,7 +15,6 @@ import java.lang.annotation.Target;
  * 2. 服务版本
  * 3. 服务注册地址
  * 4. 服务注册端口号
- * 5. 服务调用超时时间
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -29,7 +28,5 @@ public @interface RPCProvider {
     String serviceHost() default "localhost";
 
     int servicePort() default 8088;
-
-    int timeout();
 
 }

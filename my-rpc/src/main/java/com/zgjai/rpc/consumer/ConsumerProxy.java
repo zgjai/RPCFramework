@@ -38,13 +38,16 @@ public class ConsumerProxy {
             invokeData.setMethodName(method.getName());
             invokeData.setArgs(args);
             // 发送网络请求，传递invokeData
-            try (Socket socket = new Socket(host, port)) {
-                try (ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream())) {
-                    outputStream.writeObject(invokeData);
-                }
-                try (ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream())) {
-                    return inputStream.readObject();
-                }
+            Socket socket = null;
+            ObjectInputStream objectInputStream = null;
+            ObjectOutputStream objectOutputStream = null;
+            try {
+                socket = new Socket(host, port);
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectOutputStream.writeObject(invokeData);
+
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+                return objectInputStream.readObject();
             } catch (Exception e) {
                 e.printStackTrace();
             }
